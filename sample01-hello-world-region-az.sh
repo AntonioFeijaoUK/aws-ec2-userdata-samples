@@ -36,7 +36,7 @@ cat <<EOF > ${OUTPUT}
             left: 0;
             bottom: 0;
             width: 100%;
-            background-color: gray;
+            background-color: black;
             color: white;
             text-align: center;
         }
