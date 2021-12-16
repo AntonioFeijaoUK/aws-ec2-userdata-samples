@@ -23,23 +23,39 @@ chmod 2775 /var/www
 find /var/www -type d -exec chmod 2775 {} \;
 find /var/www -type f -exec chmod 0664 {} \;
 
-PublicHostname=$(curl http://169.254.169.254/latest/meta-data/public-hostname)
-InstanceID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
-AZ=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
+
+INSTANCE_INFO=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document)
+
+INSTANCE_ID=$(printf "$INSTANCE_INFO" |  grep instanceId | awk '{print $3}' | sed s/','//g | sed s/'"'//g)
+
+INSTANCE_AZ=$(printf "$INSTANCE_INFO" |  grep availabilityZone | awk '{print $3}' | sed s/','//g | sed s/'"'//g)
+
+INSTANCE_TYPE=$(printf "$INSTANCE_INFO" |  grep instanceType | awk '{print $3}' | sed s/','//g | sed s/'"'//g)
+
+INSTANCE_REGION=$(printf "$INSTANCE_INFO" |  grep region | awk '{print $3}' | sed s/','//g | sed s/'"'//g)
 
 
-OUTPUT_FILE="/var/www/html/index.html"
-
-cat <<EOF > ${OUTPUT_FILE}
+cat <<EOF >> /var/www/html/index.html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World! Sample test page By https://Antonio.Cloud</title>
-    <style>
-        .footer {
+  <title>Hello World sample page with userdata by https://Antonio.Cloud/ (Antonio Feijao UK)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: orange;
+      text-align: center;
+      color: white;
+    }
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      /* bring your own prefixes */
+      transform: translate(-50%, -50%);
+    }
+    .footer {
             position: fixed;
             left: 0;
             bottom: 0;
@@ -48,24 +64,21 @@ cat <<EOF > ${OUTPUT_FILE}
             color: white;
             text-align: center;
         }
-    </style>
+  </style>
 </head>
-
 <body>
-    <h1>Hello World! Sample test page By https://Antonio.Cloud</h1>
-    
-    <h2 id="my-url"></h2>
-    
-    <p>From instance with id of ..: ${InstanceID}</p>
-    <p>with public address of ....: ${PublicHostname}</p>
-    <p>that is in the Region-AZ ..: ${AZ}</p>
+  <center><h1>Hello World sample page with userdata by https://Antonio.Cloud/ (Antonio Feijao UK)</h1></center>
 
-
+  <div class=centered>
+    <h2 id="my-url"></h3>
+    <h2>Instance ID: <code> ${INSTANCE_ID} </code> </h2>
+    <h2>Instance Type: <code> ${INSTANCE_TYPE} </code> </h2>
+    <h2>Instance Region: <code> ${INSTANCE_REGION} </code> </h2>
+    <h2>Availability Zone: <code> ${INSTANCE_AZ} </code> </h2>
+  </div>
 
     <div class="footer">
-        <p>
-            <a href="https://antonio.cloud/" target="_blank">https://antonio.cloud/</a>
-        </p>
+        <p><a href="https://antonio.cloud/" target="_blank">https://antonio.cloud/</a></p>
     </div>
 
     <script>
@@ -73,8 +86,6 @@ cat <<EOF > ${OUTPUT_FILE}
         "Welcome to " + window.location.href;
     </script>
 
-
 </body>
-
 </html>
 EOF
