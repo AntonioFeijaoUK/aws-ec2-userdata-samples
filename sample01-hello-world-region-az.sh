@@ -1,14 +1,23 @@
 #!/bin/bash
+#
+# author: Antonio Feijao UK (https://antonio.cloud/)
+#
+# version 2021-12-16-0130
+#
+# Main script sourced from https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
+#
+# Webspage building code done by Antonio Feijao UK (https://antonio.cloud/)
+#
+
+echo "To use this file with your user-data, simply add the below 2 lines into the ec2 user-data
+
+#!/bin/bash
+curl https://raw.githubusercontent.com/AntonioFeijaoUK/aws-ec2-userdata-samples/master/sample01-hello-world-region-az.sh | bash
+
+"
+
+
 yum update -y
-
-#
-# version 2021-12-16-0048
-#
-# mostly sourced from https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
-#
-
-
-#amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
 
 yum install -y httpd
 
