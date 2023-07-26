@@ -68,7 +68,7 @@ cat <<EOF > /var/www/html/index.html
     
     .centered {
       position: fixed;
-      top: 25%;
+      top: 50%;
       left: 50%;
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
@@ -88,7 +88,7 @@ cat <<EOF > /var/www/html/index.html
       font-family: arial, sans-serif;
       border-collapse: collapse;
       width: 50%;
-      font-size: 2.5em;
+      font-size: 1.875em;
     }
     
     td, th {
@@ -99,13 +99,11 @@ cat <<EOF > /var/www/html/index.html
   </style>
 </head>
 <body>
-  <center>
+  <div class=centered>
     <h1>Hello World sample page created using EC2 userdata</h1>
     <h2>by Antonio Feijao UK</h2>
-  </center>
-  
-  <div class=centered>
-    <h2 id="my-url"></h3>
+    
+    <h3 id="my-url"></h3>
 
     <table>
       <tr>
@@ -125,11 +123,6 @@ cat <<EOF > /var/www/html/index.html
         <td><code> ${INSTANCE_AZ} </code></td>
       </tr>
     </table>
-
-    <h2>Instance ID       : <code> ${INSTANCE_ID} </code> </h2>
-    <h2>Instance Type     : <code> ${INSTANCE_TYPE} </code> </h2>
-    <h2>Instance Region   : <code> ${INSTANCE_REGION} </code> </h2>
-    <h2>Availability Zone : <code> ${INSTANCE_AZ} </code> </h2>
   </div>
 
     <div class="footer">
