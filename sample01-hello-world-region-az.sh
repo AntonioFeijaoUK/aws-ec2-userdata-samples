@@ -15,7 +15,7 @@ echo "
 To use this file with your EC2' user-data, simply add the below 2 lines into the ec2 user-data
 
 #!/bin/bash
-curl https://raw.githubusercontent.com/AntonioFeijaoUK/aws-ec2-userdata-samples/master/sample01-hello-world-region-az.sh | bash
+curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/AntonioFeijaoUK/aws-ec2-userdata-samples/master/sample01-hello-world-region-az.sh | bash
 
 "
 yum update -y
@@ -87,7 +87,7 @@ cat <<EOF > /var/www/html/index.html
     table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
-      width: 50%;
+      width: 80%;
       font-size: 1.875em;
     }
     
