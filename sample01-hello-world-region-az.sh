@@ -68,7 +68,7 @@ cat <<EOF > /var/www/html/index.html
     
     .centered {
       position: fixed;
-      top: 50%;
+      top: 20%;
       left: 50%;
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
