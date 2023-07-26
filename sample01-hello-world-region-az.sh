@@ -51,7 +51,7 @@ cat <<EOF > /var/www/html/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello World sample page with created using userdata by https://www.antoniofeijao.com/ (Antonio Feijao UK)</title>
+  <title>Hello World sample page created using EC2 userdata, by Antonio Feijao UK (https://www.antoniofeijao.com/)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <style>
@@ -85,8 +85,9 @@ cat <<EOF > /var/www/html/index.html
 </head>
 <body>
   <center>
-    <h1>Hello World sample page with created using userdata</h1>
-    <h2>by https://www.antoniofeijao.com/ (Antonio Feijao UK)</h2>
+    <h1>Hello World sample page created using EC2 userdata</h1>
+    <h2>by Antonio Feijao UK</h2>
+    <p><a href="https://www.antoniofeijao.com/" target="_blank">https://www.antoniofeijao.com/</a></p>
   </center>
 
   <div class=centered>
