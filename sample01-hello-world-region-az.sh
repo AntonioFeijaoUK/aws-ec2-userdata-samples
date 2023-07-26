@@ -91,6 +91,26 @@ cat <<EOF > /var/www/html/index.html
   
   <div class=centered>
     <h2 id="my-url"></h3>
+
+    <table style="width:50%">
+      <tr>
+        <td>Instance ID</td>
+        <td><code> ${INSTANCE_ID} </code></td>
+      </tr>
+      <tr>
+        <td>Instance Type</td>
+        <td><code> ${INSTANCE_TYPE} </code></td>
+      </tr>
+      <tr>
+        <td>Instance Region</td>
+        <td><code> ${INSTANCE_REGION} </code></td>
+      </tr>
+      <tr>
+        <td>Availability Zone</td>
+        <td><code> ${INSTANCE_AZ} </code></td>
+      </tr>
+    </table>
+
     <h2>Instance ID       : <code> ${INSTANCE_ID} </code> </h2>
     <h2>Instance Type     : <code> ${INSTANCE_TYPE} </code> </h2>
     <h2>Instance Region   : <code> ${INSTANCE_REGION} </code> </h2>
