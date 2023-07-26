@@ -1,22 +1,23 @@
 #!/bin/bash
 #
-# author: Antonio Feijao UK (https://antonio.cloud/)
+# author: Antonio Feijao UK (https://www.antoniofeijao.com/)
 #
-# version 2021-12-16-0130
+# 2023-07-26 - added support from IMDSv2 (based on AWS docs https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html)
+# 2023-07-26 - minor tweaks to the html and css
+# 2021-12-16 - initial version 
 #
 # Main script sourced from https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
 #
-# Webspage building code done by Antonio Feijao UK (https://antonio.cloud/)
+# Webspage building code done by Antonio Feijao UK (https://www.antoniofeijao.com/)
 #
 
-echo "To use this file with your user-data, simply add the below 2 lines into the ec2 user-data
+echo "
+To use this file with your EC2' user-data, simply add the below 2 lines into the ec2 user-data
 
 #!/bin/bash
 curl https://raw.githubusercontent.com/AntonioFeijaoUK/aws-ec2-userdata-samples/master/sample01-hello-world-region-az.sh | bash
 
 "
-
-
 yum update -y
 
 yum install -y httpd
@@ -32,8 +33,10 @@ chmod 2775 /var/www
 find /var/www -type d -exec chmod 2775 {} \;
 find /var/www -type f -exec chmod 0664 {} \;
 
+## update to use token on IMDSv2
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
 
-INSTANCE_INFO=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document)
+INSTANCE_INFO=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/dynamic/instance-identity/document)
 
 INSTANCE_ID=$(printf "$INSTANCE_INFO" |  grep instanceId | awk '{print $3}' | sed s/','//g | sed s/'"'//g)
 
@@ -48,14 +51,19 @@ cat <<EOF > /var/www/html/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello World sample page with userdata by https://Antonio.Cloud/ (Antonio Feijao UK)</title>
+  <title>Hello World sample page with created using userdata by https://www.antoniofeijao.com/ (Antonio Feijao UK)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <style>
     body {
-      background-color: orange;
-      text-align: center;
-      color: white;
+      /* background-color: orange; */
+      /* text-align: center; */
+      /* color: white;  */
+      background: url("https://www.antoniofeijao.com/assets/images/gebhartyler-AQpOwYbm_Jg-unsplash.jpeg")no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;      
     }
     .centered {
       position: fixed;
@@ -76,7 +84,10 @@ cat <<EOF > /var/www/html/index.html
   </style>
 </head>
 <body>
-  <center><h1>Hello World sample page with userdata by https://Antonio.Cloud/ (Antonio Feijao UK)</h1></center>
+  <center>
+    <h1>Hello World sample page with created using userdata</h1>
+    <h2>by https://www.antoniofeijao.com/ (Antonio Feijao UK)</h2>
+  </center>
 
   <div class=centered>
     <h2 id="my-url"></h3>
@@ -87,7 +98,7 @@ cat <<EOF > /var/www/html/index.html
   </div>
 
     <div class="footer">
-        <p><a href="https://antonio.cloud/" target="_blank">https://antonio.cloud/</a></p>
+        <p><a href="https://www.antoniofeijao.com/" target="_blank">https://www.antoniofeijao.com/</a></p>
     </div>
 
     <script>
