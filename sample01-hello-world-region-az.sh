@@ -88,6 +88,7 @@ cat <<EOF > /var/www/html/index.html
       font-family: arial, sans-serif;
       border-collapse: collapse;
       width: 50%;
+      font-size: 2.5em;
     }
     
     td, th {
