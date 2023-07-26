@@ -67,7 +67,7 @@ cat <<EOF > /var/www/html/index.html
     }
     .centered {
       position: fixed;
-      top: 50%;
+      top: 25%;
       left: 50%;
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
@@ -87,15 +87,14 @@ cat <<EOF > /var/www/html/index.html
   <center>
     <h1>Hello World sample page created using EC2 userdata</h1>
     <h2>by Antonio Feijao UK</h2>
-    <h3><a href="https://www.antoniofeijao.com/" target="_blank">https://www.antoniofeijao.com/</a></h3>
   </center>
-
+  
   <div class=centered>
     <h2 id="my-url"></h3>
-    <h2>Instance ID: <code> ${INSTANCE_ID} </code> </h2>
-    <h2>Instance Type: <code> ${INSTANCE_TYPE} </code> </h2>
-    <h2>Instance Region: <code> ${INSTANCE_REGION} </code> </h2>
-    <h2>Availability Zone: <code> ${INSTANCE_AZ} </code> </h2>
+    <h2>Instance ID       : <code> ${INSTANCE_ID} </code> </h2>
+    <h2>Instance Type     : <code> ${INSTANCE_TYPE} </code> </h2>
+    <h2>Instance Region   : <code> ${INSTANCE_REGION} </code> </h2>
+    <h2>Availability Zone : <code> ${INSTANCE_AZ} </code> </h2>
   </div>
 
     <div class="footer">
