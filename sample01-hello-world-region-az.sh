@@ -56,14 +56,14 @@ cat <<EOF > /var/www/html/index.html
   <meta charset="UTF-8">
   <style>
     body {
-      background-color: orange;
-      text-align: center;
-      color: white;
-      background: url("https://www.antoniofeijao.com/assets/images/gebhartyler-AQpOwYbm_Jg-unsplash.jpeg")no-repeat center center fixed;
+      background: url("https://www.antoniofeijao.com/assets/images/gebhartyler-AQpOwYbm_Jg-unsplash.jpeg") no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
-      background-size: cover;      
+      background-size: cover;
+      background-color: orange;
+      text-align: center;
+      color: white;
     }
     .centered {
       position: fixed;
