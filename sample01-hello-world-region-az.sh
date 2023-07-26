@@ -65,6 +65,7 @@ cat <<EOF > /var/www/html/index.html
       text-align: center;
       color: GhostWhite;
     }
+    
     .centered {
       position: fixed;
       top: 25%;
@@ -72,6 +73,7 @@ cat <<EOF > /var/www/html/index.html
       /* bring your own prefixes */
       transform: translate(-50%, -50%);
     }
+    
     .footer {
             position: fixed;
             left: 0;
@@ -80,7 +82,19 @@ cat <<EOF > /var/www/html/index.html
             background-color: GhostWhite;
             color: DarkSlateGrey;
             text-align: center;
-        }
+    }
+    
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
   </style>
 </head>
 <body>
@@ -92,7 +106,7 @@ cat <<EOF > /var/www/html/index.html
   <div class=centered>
     <h2 id="my-url"></h3>
 
-    <table style="width:50%">
+    <table>
       <tr>
         <td>Instance ID</td>
         <td><code> ${INSTANCE_ID} </code></td>
