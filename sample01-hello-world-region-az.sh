@@ -77,8 +77,8 @@ cat <<EOF > /var/www/html/index.html
             left: 0;
             bottom: 0;
             width: 100%;
-            background-color: black;
-            color: white;
+            background-color: GhostWhite;
+            color: DarkSlateGrey;
             text-align: center;
         }
   </style>
@@ -87,7 +87,7 @@ cat <<EOF > /var/www/html/index.html
   <center>
     <h1>Hello World sample page created using EC2 userdata</h1>
     <h2>by Antonio Feijao UK</h2>
-    <p><a href="https://www.antoniofeijao.com/" target="_blank">https://www.antoniofeijao.com/</a></p>
+    <h3><a href="https://www.antoniofeijao.com/" target="_blank">https://www.antoniofeijao.com/</a></h3>
   </center>
 
   <div class=centered>
